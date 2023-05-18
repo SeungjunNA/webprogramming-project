@@ -1,3 +1,9 @@
+<%@page import="java.sql.ResultSet" %>
+<%@page import="java.sql.PreparedStatement" %>
+<%@page import="java.sql.DriverManager" %>
+<%@page import="java.sql.Connection" %>
+<%@page import="oracle.jdbc.driver.OracleDriver" %>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!doctype html>
@@ -8,6 +14,9 @@
 </head>
 <body>
 	<h1>홈 화면</h1>
-	<jsp:include page="menubar.jsp"></jsp:include>
+	<jsp:include page="menubar.jsp"></jsp:include>	
+	
+	
+	
 </body>
 </html>

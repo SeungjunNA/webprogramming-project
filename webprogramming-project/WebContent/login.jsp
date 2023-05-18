@@ -17,7 +17,7 @@
 	<h1>로그인 화면</h1>
 	<jsp:include page="menubar.jsp"></jsp:include>
 
-	<form style="padding: 150px 500px 0px 500px;">
+	<form method="post" action="loginAction.jsp" style="padding: 150px 500px 0px 500px;">
 		<h3 style="text-align: center;">로그인 화면</h3>
 		<div class="mb-3">
 			<label for="exampleInputEmail1" class="form-label">ID</label> 
@@ -28,7 +28,7 @@
 			<input type="password" class="form-control" placeholder="비밀번호" name="userPassword" maxlength="20">
 		</div>
 		<button type="login" class="btn btn-primary">로그인</button>
-		<button type="join" class="btn btn-primary">회원가입</button>
-	</form>
+		<button type="join" class="btn btn-primary" href="join.jsp"">회원가입</button>
+	</form>		
 </body>
 </html>
