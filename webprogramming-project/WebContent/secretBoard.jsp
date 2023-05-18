@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>비밀게시판</h1>
+	<h1> 비밀게시판 </h1>
 	<jsp:include page="menubar.jsp"></jsp:include>
 </body>
 </html>
