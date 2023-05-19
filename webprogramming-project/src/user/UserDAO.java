@@ -12,10 +12,10 @@ public class UserDAO {
 
 	public UserDAO() {
 		try {
-			String dbURL = "jdbc:oracle://localhost:3306/webprogramming";
-			String dbID = "user";
-			String dbPassword = "1234";
-			Class.forName("com.oracle.jdbc.Driver");
+			String dbURL = "jdbc:mysql://localhost:3306/WEB_PROJECT";
+			String dbID = "root";
+			String dbPassword = "nsj0316";
+			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -40,5 +40,22 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return -2; // 데이터베이스 오류
+	}
+	
+	public int join(User user) {
+		String SQL = "INSERT INTO USER VALUES (?, ?, ?, ?, ?, ?)";
+		try {
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, user.getUserID());
+			pstmt.setString(2, user.getUserPassword());
+			pstmt.setString(4, user.getUserEmail());
+			pstmt.setString(3, user.getUserName());
+			pstmt.setString(5, user.getUserNickname());
+			pstmt.setString(6, user.getUserGender());
+			return pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return -1; //데이터베이스 오류
 	}
 }

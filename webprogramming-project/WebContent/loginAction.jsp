@@ -10,19 +10,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js">
-		
-	</script>
-	<h1>로그인 화면</h1>
-	<jsp:include page="menubar.jsp"></jsp:include>
-
 	<%
 		UserDAO userDAO= new UserDAO();
 		int result = userDAO.login(user.getUserID(), user.getUserPassword());
@@ -51,7 +41,5 @@
 			script.println("</script>");
 		}
 	%>
-	
-	
 </body>
 </html>
