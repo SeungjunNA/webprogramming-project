@@ -25,7 +25,7 @@
 	Class.forName("com.mysql.jdbc.Driver");
 	conn = DriverManager.getConnection(url, id, pwd);
 	
-	out.println("<h1>Mysql db 연결 성공</h1>");
+	out.println("<h1>Mysql db 연결 성공!</h1>");
 	%>
 	
 	
