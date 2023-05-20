@@ -28,7 +28,7 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="index.jsp">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="member_info.jsp">회원 정보</a></li>
+
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> 게시판 </a>
@@ -40,8 +40,23 @@
 				</ul>
 				<div class="d-flex">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<%
+							String userID = null;
+							if (session.getAttribute("userID") != null) {
+								userID = (String) session.getAttribute("userID");
+							}
+							if (userID != null) {
+						%>
+						<li class="nav-item"><a class="nav-link" href="member_info.jsp">회원 정보</a></li>
+						<li class="nav-item"><a class="nav-link" href="logoutAction.jsp">로그아웃</a></li>
+						<%
+							} else {
+						%>
 						<li class="nav-item"><a class="nav-link" href="login.jsp">로그인</a></li>
 						<li class="nav-item"><a class="nav-link" href="join.jsp">회원가입</a></li>
+						<%
+							}
+						%>
 					</ul>
 				</div>
 				<form class="d-flex" role="search">
