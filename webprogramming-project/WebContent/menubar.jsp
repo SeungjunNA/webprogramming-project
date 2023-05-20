@@ -47,8 +47,10 @@
 							}
 							if (userID != null) {
 						%>
-						<li class="nav-item"><a class="nav-link" href="member_info.jsp">회원 정보</a></li>
-						<li class="nav-item"><a class="nav-link" href="logoutAction.jsp">로그아웃</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="member_info.jsp">회원 정보</a></li>
+						<li class="nav-item"><a class="nav-link"
+							href="logoutAction.jsp">로그아웃</a></li>
 						<%
 							} else {
 						%>

@@ -28,6 +28,5 @@
 		out.println("<h1>Mysql db 연결 성공!</h1>");
 	%>
 
-
 </body>
 </html>
