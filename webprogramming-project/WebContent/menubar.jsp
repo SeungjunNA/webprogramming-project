@@ -30,7 +30,7 @@
 						aria-current="page" href="index.jsp">Home</a></li>
 
 					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
+						class="nav-link dropdown-toggle" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> 게시판 </a>
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" href="board.jsp">자유 게시판</a></li>
