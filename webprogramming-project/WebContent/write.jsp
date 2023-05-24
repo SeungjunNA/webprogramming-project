@@ -12,7 +12,12 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-<title>Insert title here</title>
+<title>글작성</title>
+<style>
+	.note-editable {
+		background-color: #fff;
+	}
+</style>
 </head>
 <body>
 	<h1>글쓰기 페이지</h1>

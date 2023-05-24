@@ -11,13 +11,6 @@
 <meta charset="utf-8">
 <title>심희스토리</title>
 <style>
-/* 전체 페이지 스타일 */
-body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 20px;
-	background-color: #f2f2f2;
-}
 .home-container{
 	display:flex;
 }
@@ -59,7 +52,6 @@ body {
 </style>
 </head>
 <body>
-	<h1>홈 화면</h1>
 	<jsp:include page="menubar.jsp"></jsp:include>
 
 	<div class="home-container">

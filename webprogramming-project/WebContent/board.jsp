@@ -6,14 +6,6 @@
 <meta charset="UTF-8">
 <title>자유게시판</title>
 <style>
-/* 전체 페이지 스타일 */
-body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 20px;
-	background-color: #f2f2f2;
-}
-
 /* 메뉴 바 스타일 */
 .menu-bar {
 	margin-bottom: 20px; /* menu.jsp와의 간격을 조절 */
@@ -71,7 +63,6 @@ body {
 </style>
 </head>
 <body>
-	<h1>자유게시판</h1>
 	<jsp:include page="menubar.jsp" />
 
 	<div class="post-list">

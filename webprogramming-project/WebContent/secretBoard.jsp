@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자유게시판</title>
+<title>비밀게시판</title>
 <style>
 /* 전체 페이지 스타일 */
 body {
@@ -70,7 +70,6 @@ body {
 </style>
 </head>
 <body>
-	<h1>자유게시판</h1>
 	<jsp:include page="menubar.jsp" />
 
 	<div class="post-list">
