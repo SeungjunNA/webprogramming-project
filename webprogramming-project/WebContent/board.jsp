@@ -111,23 +111,21 @@
 			<%
 				}
 			%>
-			<a href="board.jsp?pageNumber=<%=pageNumber - 1%>"
-				class="btn btn-success btn-arrow-left">이전</a> <a
-				href="board.jsp?pageNumber=<%=pageNumber + 1%>"
-				class="btn btn-success btn-arrow-right">다음</a>
+
 		</div>
 		<%
 			if (pageNumber != 1) {
 		%>
-
+		<a href="board.jsp?pageNumber=<%=pageNumber - 1%>"
+			class="btn btn-primary">이전</a>
 		<%
 			}
-			if (boardDAO.nextPage(pageNumber + 1)) {
+			if (list.get(0).getBoardID()/10 > 0 && list.get(0).getBoardID()%10 > 0) {
 		%>
-
+		<a href="board.jsp?pageNumber=<%=pageNumber + 1%>"
+			class="btn btn-primary">다음</a>
 		<%
 			}
 		%>
-	
 </body>
 </html>
