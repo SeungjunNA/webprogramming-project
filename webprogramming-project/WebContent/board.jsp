@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>
+<%@ page import="board.BoardDAO"%>
+<%@ page import="board.Board"%>
+<%@ page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,8 +38,8 @@
 	font-weight: bold;
 }
 
-/* 글목록 내용 */
-.post-content {
+/* 글목록 번호 */
+.post-id {
 	margin-top: 5px;
 	color: #555555;
 }
@@ -71,6 +76,10 @@
 			if (session.getAttribute("userID") != null) {
 				userID = (String) session.getAttribute("userID");
 			}
+			int pageNumber = 1;
+			if (request.getParameter("pageNumber") != null) {
+				pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+			}
 			if (userID != null) {
 		%>
 		<button class="btn btn-primary" onclick="location.href = 'write.jsp' "
@@ -79,35 +88,46 @@
 			}
 		%>
 		<div class="post-item">
+			<%
+				BoardDAO boardDAO = new BoardDAO();
+				ArrayList<Board> list = boardDAO.getList(pageNumber);
+				for (int i = 0; i < list.size(); i++) {
+			%>
 			<div>
-				<div class="post-title">게시글 제목 1</div>
-				<div class="post-content">게시글 내용 1</div>
-				<div class="post-author">작성자: John Doe</div>
+				<div class="post-id">
+					<%=list.get(i).getBoardID()%>
+				</div>
+				<div class="post-title"
+					onclick="location.href='view.jsp?boardID=<%list.get(i).getBoardID();%>'">
+					<%=list.get(i).getBoardTitle()%>
+				</div>
+				<div class="post-author">
+					<%=list.get(i).getUserID()%>
+				</div>
 			</div>
 			<div>
-				<div class="post-date">작성일: 2023-05-23</div>
+				<div class="post-date"><%=list.get(i).getBoardDate()%></div>
 			</div>
+			<%
+				}
+			%>
+			<a href="board.jsp?pageNumber=<%=pageNumber - 1%>"
+				class="btn btn-success btn-arrow-left">이전</a> <a
+				href="board.jsp?pageNumber=<%=pageNumber + 1%>"
+				class="btn btn-success btn-arrow-right">다음</a>
 		</div>
-		<div class="post-item">
-			<div>
-				<div class="post-title">게시글 제목 1</div>
-				<div class="post-content">게시글 내용 1</div>
-				<div class="post-author">작성자: John Doe</div>
-			</div>
-			<div>
-				<div class="post-date">작성일: 2023-05-23</div>
-			</div>
-		</div>
-		<div class="post-item">
-			<div>
-				<div class="post-title">게시글 제목 1</div>
-				<div class="post-content">게시글 내용 1</div>
-				<div class="post-author">작성자: John Doe</div>
-			</div>
-			<div>
-				<div class="post-date">작성일: 2023-05-23</div>
-			</div>
-		</div>
-	</div>
+		<%
+			if (pageNumber != 1) {
+		%>
+
+		<%
+			}
+			if (boardDAO.nextPage(pageNumber + 1)) {
+		%>
+
+		<%
+			}
+		%>
+	
 </body>
 </html>

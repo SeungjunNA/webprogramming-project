@@ -1,12 +1,11 @@
 package board;
 
-public class Board {
+public class SecretBoard {
 	private int boardID;
 	private String boardTitle;
 	private String userID;
 	private String boardDate;
 	private String boardContent;
-	
 	public int getBoardID() {
 		return boardID;
 	}
