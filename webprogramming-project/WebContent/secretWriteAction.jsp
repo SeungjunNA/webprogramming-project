@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="board.BoardDAO"%>
+<%@ page import="board.SecretBoardDAO"%>
 <%@ page import="java.io.PrintWriter"%>
 <%	request.setCharacterEncoding("UTF-8");%>
-<jsp:useBean id="board" class="board.Board" scope="page" />
-<jsp:setProperty name="board" property="boardTitle" />
-<jsp:setProperty name="board" property="boardContent" />
+<jsp:useBean id="secretBoard" class="board.SecretBoard" scope="page" />
+<jsp:setProperty name="secretBoard" property="boardTitle" />
+<jsp:setProperty name="secretBoard" property="boardContent" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,21 +15,21 @@
 <body>
 	<%
 		String userID = (String) session.getAttribute("userID");
-		if (board.getBoardTitle() == null) {
+		if (secretBoard.getBoardTitle() == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('제목을 입력하세요.')");
 			script.println("history.back()");
 			script.println("</script>");
-		} else if (board.getBoardContent() == null) {
+		} else if (secretBoard.getBoardContent() == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('내용을 입력하세요.')");
 			script.println("history.back()");
 			script.println("</script>");
 		} else {
-			BoardDAO boardDAO = new BoardDAO();
-			int result = boardDAO.write(board.getBoardTitle(), userID, board.getBoardContent());
+			SecretBoardDAO secretBoardDAO = new SecretBoardDAO();
+			int result = secretBoardDAO.write(secretBoard.getBoardTitle(), userID, secretBoard.getBoardContent());
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
@@ -39,7 +39,7 @@
 			} else {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");
-				script.println("location.href='board.jsp'");
+				script.println("location.href='secretBoard.jsp'");
 				script.println("</script>");
 			}
 		}

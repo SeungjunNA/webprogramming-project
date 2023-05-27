@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="board.BoardDAO"%>
-<%@ page import="board.Board"%>
+<%@ page import="board.SecretBoardDAO"%>
+<%@ page import="board.SecretBoard"%>
 <%@ page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -88,15 +88,15 @@ body {
 			}
 			if (userID != null) {
 		%>
-		<button class="btn btn-primary" onclick="location.href = 'write.jsp' "
+		<button class="btn btn-primary" onclick="location.href = 'secretWrite.jsp' "
 			style="float: right">글작성</button>
 		<%
 			}
 		%>
 		<div class="post-item">
 			<%
-				BoardDAO boardDAO = new BoardDAO();
-				ArrayList<Board> list = boardDAO.getList(pageNumber);
+			SecretBoardDAO secretBoardDAO = new SecretBoardDAO();
+				ArrayList<SecretBoard> list = secretBoardDAO.getList(pageNumber);
 				for (int i = 0; i < list.size(); i++) {
 			%>
 			<div>
@@ -123,7 +123,7 @@ body {
 			class="btn btn-primary">이전</a>
 		<%
 			}
-			if (list.get(0).getBoardID()/10 > 0 && list.get(0).getBoardID()%10 > 0) {
+			if (list.size()/10 > 0 && list.size()%10 > 0) {
 		%>
 		<a href="secretBoard.jsp?pageNumber=<%=pageNumber + 1%>"
 			class="btn btn-primary">다음</a>
