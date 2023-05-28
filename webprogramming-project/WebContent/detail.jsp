@@ -41,6 +41,43 @@ body {
 	line-height: 1.5;
 }
 
+.comment-section {
+	margin-top: 30px;
+	border-top: 1px solid #ccc;
+	padding-top: 20px;
+}
+
+.comment {
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #ccc;
+}
+
+.comment .comment-details {
+	font-size: 12px;
+	color: #888;
+	margin-bottom: 5px;
+}
+
+.comment .comment-content {
+	color: #555;
+	line-height: 1.3;
+}
+
+.comment-form {
+	margin-top: 20px;
+}
+
+.comment-form textarea {
+	width: 100%;
+	height: 80px;
+	resize: vertical;
+}
+
+.comment-form button {
+	margin-top: 10px;
+}
+
 .back-link {
 	display: inline-block;
 	margin-top: 10px;
@@ -58,10 +95,32 @@ body {
 	<div class="container">
 		<h1 class="post-title">게시판 상세 페이지</h1>
 		<div class="post-details">
-			<span class="post-date">작성일: </span> <span class="post-author">작성자:
-			</span>
+			<span class="post-date">작성일</span> <br> <span
+				class="post-author">작성자</span>
 		</div>
 		<div class="post-content">내용</div>
+		<div class="comment-section">
+			<div class="comment">
+				<div class="comment-details">
+					<span class="comment-date">작성일: 2023-05-24</span> 
+					<span class="comment-author">작성자: John Doe</span>
+				</div>
+				<div class="comment-content">댓글 내용입니다.</div><br>
+				<div class="comment-details">
+					<span class="comment-date">작성일: 2023-05-24</span> 
+					<span class="comment-author">작성자: John Doe</span>
+				</div>
+				<div class="comment-content">댓글 내용입니다.</div>
+
+			</div>
+		</div>
+		<div class="comment-form">
+			<form action="commentAction.jsp" method="post">
+				<textarea name="commentContent" placeholder="댓글을 입력하세요" required></textarea>
+				<br>
+				<button type="submit">댓글 작성</button>
+			</form>
+		</div>
 		<a href="javascript:history.back();" class="back-link">뒤로 가기</a>
 	</div>
 </body>
