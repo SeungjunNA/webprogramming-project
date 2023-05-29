@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.io.PrintWriter"%>	
+<%@ page import="java.io.PrintWriter"%>
 <%@ page import="board.Board"%>
 <%@ page import="board.BoardDAO"%>
 <!DOCTYPE html>
@@ -22,13 +22,6 @@ body {
 	background-color: #fff;
 	padding: 20px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.post-title {
-	font-size: 24px;
-	font-weight: bold;
-	margin-bottom: 10px;
-	color: #333;
 }
 
 .post-details {
@@ -88,6 +81,21 @@ body {
 }
 
 .back-link:hover {
+	text-decoration: underline; . edit-link { position : absolute;
+	top: 20px;
+	right: 20px;
+	color: #888;
+	text-decoration: none;
+}
+
+.edit-link {
+	display: flex;
+	color: #888;
+	text-decoration: none;
+}
+}
+
+.edit-link:hover {
 	text-decoration: underline;
 }
 </style>
@@ -95,11 +103,15 @@ body {
 <body>
 	<jsp:include page="menubar.jsp"></jsp:include>
 	<%
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
 		int boardID = 0;
-		if(request.getParameter("boardID") != null){
+		if (request.getParameter("boardID") != null) {
 			boardID = Integer.parseInt(request.getParameter("boardID"));
 		}
-		if(boardID == 0){
+		if (boardID == 0) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('유효하지 않은 글입니다.')");
@@ -109,12 +121,18 @@ body {
 		Board board = new BoardDAO().getBoard(boardID);
 	%>
 	<div class="container">
-		<h1 class="post-title">게시판 상세 페이지</h1>
+			<%
+			if (userID != null && userID.equals(board.getUserID())) {
+		%><a href="update.jsp?boardID=<%=boardID%>" class="edit-link">수정하기</a>
+		<a href="delete.jsp?boardID=<%=boardID%>" class="edit-link">삭제하기</a>
+			<%
+				}
+			%>
 		<div class="post-details">
-			<span class="post-date">작성일 : <%=board.getBoardDate() %></span> <br> <span
-				class="post-author">작성자 : <%=board.getUserID() %></span>
+			<span class="post-date">작성일 : <%=board.getBoardDate()%></span> <br>
+			<span class="post-author">작성자 : <%=board.getUserID()%></span>
 		</div>
-		<div class="post-content"><%= board.getBoardContent() %></div>
+		<div class="post-content"><%=board.getBoardContent()%></div>
 		<div class="comment-section">
 			<div class="comment">
 				<div class="comment-details">
