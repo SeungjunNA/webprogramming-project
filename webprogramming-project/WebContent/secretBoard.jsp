@@ -104,7 +104,7 @@ body {
 					<%=list.get(i).getBoardID()%>
 				</div>
 				<div class="post-title"
-					onclick="location.href='secretDetail.jsp?boardID=<%list.get(i).getBoardID();%>'">
+					onclick="location.href='secretDetail.jsp?boardID=<%=list.get(i).getBoardID()%>'">
 					<%=list.get(i).getBoardTitle()%>
 				</div>
 			</div>

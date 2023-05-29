@@ -98,7 +98,7 @@
 					<%=list.get(i).getBoardID()%>
 				</div>
 				<div class="post-title"
-					onclick="location.href='detail.jsp?boardID=<%list.get(i).getBoardID();%>'">
+					onclick="location.href='detail.jsp?boardID=<%=list.get(i).getBoardID()%>'">
 					<%=list.get(i).getBoardTitle()%>
 				</div>
 				<div class="post-author">

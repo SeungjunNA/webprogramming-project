@@ -103,4 +103,25 @@ public class SecretBoardDAO {
 		}
 		return false;
 	}
+	
+	public SecretBoard getBoard(int boardID) {
+		String SQL = "SELECT * FROM SECRETBOARD WHERE boardID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, boardID);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				SecretBoard secretBoard = new SecretBoard();
+				secretBoard.setBoardID(rs.getInt(1));
+				secretBoard.setBoardTitle(rs.getString(2));
+				secretBoard.setUserID(rs.getString(3));
+				secretBoard.setBoardDate(rs.getString(4));
+				secretBoard.setBoardContent(rs.getString(5));
+				return secretBoard;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

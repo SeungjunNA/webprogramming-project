@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.io.PrintWriter"%>	
 <%@ page import="board.Board"%>
+<%@ page import="board.BoardDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,23 +94,38 @@ body {
 </head>
 <body>
 	<jsp:include page="menubar.jsp"></jsp:include>
+	<%
+		int boardID = 0;
+		if(request.getParameter("boardID") != null){
+			boardID = Integer.parseInt(request.getParameter("boardID"));
+		}
+		if(boardID == 0){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않은 글입니다.')");
+			script.println("location.href = board.jsp");
+			script.println("</script>");
+		}
+		Board board = new BoardDAO().getBoard(boardID);
+	%>
 	<div class="container">
 		<h1 class="post-title">게시판 상세 페이지</h1>
 		<div class="post-details">
-			<span class="post-date">작성일</span> <br> <span
-				class="post-author">작성자</span>
+			<span class="post-date">작성일 : <%=board.getBoardDate() %></span> <br> <span
+				class="post-author">작성자 : <%=board.getUserID() %></span>
 		</div>
-		<div class="post-content">내용</div>
+		<div class="post-content"><%= board.getBoardContent() %></div>
 		<div class="comment-section">
 			<div class="comment">
 				<div class="comment-details">
-					<span class="comment-date">작성일: 2023-05-24</span> 
-					<span class="comment-author">작성자: John Doe</span>
+					<span class="comment-date">작성일:</span> <span class="comment-author">작성자:
+						John Doe</span>
 				</div>
-				<div class="comment-content">댓글 내용입니다.</div><br>
+				<div class="comment-content">댓글 내용입니다.</div>
+				<br>
 				<div class="comment-details">
-					<span class="comment-date">작성일: 2023-05-24</span> 
-					<span class="comment-author">작성자: John Doe</span>
+					<span class="comment-date">작성일: 2023-05-24</span> <span
+						class="comment-author">작성자: John Doe</span>
 				</div>
 				<div class="comment-content">댓글 내용입니다.</div>
 
