@@ -96,6 +96,10 @@ body {
 	<jsp:include page="menubar.jsp"></jsp:include>
 
 	<%
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
 		int boardID = 0;
 		if (request.getParameter("boardID") != null) {
 			boardID = Integer.parseInt(request.getParameter("boardID"));
@@ -110,11 +114,19 @@ body {
 		SecretBoard secretBoard = new SecretBoardDAO().getBoard(boardID);
 	%>
 	<div class="container">
-		<h1 class="post-title">게시판 상세 페이지</h1>
+		<%
+			if (userID != null && userID.equals(secretBoard.getUserID())) {
+		%>
+			<a href="secretUpdate.jsp?boardID=<%=boardID%>" class="edit-link">수정하기</a>
+			<a href="secretDeleteAction.jsp?boardID=<%=boardID%>" class="edit-link">삭제하기</a>
+		<%
+			}
+		%>
+		<h1><%=secretBoard.getBoardTitle() %></h1>
 		<div class="post-details">
-			<span class="post-date">작성일: <%=secretBoard.getBoardDate() %></span>
+			<span class="post-date">작성일: <%=secretBoard.getBoardDate()%></span>
 		</div>
-		<div class="post-content"><%=secretBoard.getBoardContent() %></div>
+		<div class="post-content"><%=secretBoard.getBoardContent()%></div>
 		<div class="comment-section">
 			<div class="comment">
 				<div class="comment-details">

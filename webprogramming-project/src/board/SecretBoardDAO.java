@@ -52,7 +52,7 @@ public class SecretBoardDAO {
 	}
 
 	public int write(String boardTitle, String userID, String boardContent) {
-		String SQL = "INSERT INTO SECRETBOARD VALUEs(?, ?, ?, ?, ?)";
+		String SQL = "INSERT INTO SECRETBOARD VALUES(?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
@@ -123,5 +123,31 @@ public class SecretBoardDAO {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public int update(int boardID, String boardTitle, String boardContent) {
+		String SQL = "UPDATE SECRETBOARD SET boardTitle = ?, boardContent = ? WHERE boardID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, boardTitle);
+			pstmt.setString(2, boardContent);
+			pstmt.setInt(3, boardID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int delete(int boardID) {
+		String SQL = "DELETE FROM SECRETBOARD WHERE boardID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, boardID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 }
