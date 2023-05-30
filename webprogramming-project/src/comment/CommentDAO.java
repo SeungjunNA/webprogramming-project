@@ -39,6 +39,21 @@ public class CommentDAO {
 		}
 		return -1;
 	}
+	public int secretCommentWrite(String userID, String commentContent, int boardID) {
+		String SQL = "INSERT INTO SECRETCOMMENT VALUES(?, ?, ?, ?, ?)";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getSecretNext());
+			pstmt.setString(2, userID);
+			pstmt.setString(3, commentContent);
+			pstmt.setString(4, getDate());
+			pstmt.setInt(5, boardID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	
 	public String getDate() {
 		String SQL = "SELECT NOW()";
@@ -69,8 +84,44 @@ public class CommentDAO {
 		return -1;
 	}
 	
+	public int getSecretNext() {
+		String SQL = "SELECT commentID FROM SECRETCOMMENT ORDER BY commentID DESC";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1) + 1;
+			}
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	public ArrayList<Comment> getList(int boardID) {
 		String SQL = "SELECT * FROM COMMENT WHERE boardID = ? ORDER BY commentID DESC";
+		ArrayList<Comment> list = new ArrayList<Comment>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, boardID);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Comment comment = new Comment();
+				comment.setCommentID(rs.getInt(1));
+				comment.setUserID(rs.getString(2));
+				comment.setCommentContent(rs.getString(3));
+				comment.setCommentDate(rs.getString(4));
+				comment.setBoardID(rs.getInt(5));
+				list.add(comment);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public ArrayList<Comment> getSecretList(int boardID) {
+		String SQL = "SELECT * FROM SECRETCOMMENT WHERE boardID = ? ORDER BY commentID DESC";
 		ArrayList<Comment> list = new ArrayList<Comment>();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
