@@ -150,4 +150,28 @@ public class SecretBoardDAO {
 		}
 		return -1;
 	}
+	
+	public ArrayList<SecretBoard> getSearchList(int pageNumber, String searchText){
+		ArrayList<SecretBoard> list = new ArrayList<SecretBoard>();
+		String SQL = "SELECT * FROM SECRETBOARD WHERE boardID < ? AND boardTitle LIKE '%"+searchText+"%' ORDER BY boardID DESC LIMIT 10";
+		System.out.println(getNext() - (pageNumber - 1) * 10 + " ,,  "+ searchText);
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				SecretBoard secretBoard = new SecretBoard();
+				secretBoard.setBoardID(rs.getInt(1));
+				secretBoard.setBoardTitle(rs.getString(2));
+				secretBoard.setUserID(rs.getString(3));
+				secretBoard.setBoardDate(rs.getString(4));
+				secretBoard.setBoardContent(rs.getString(5));
+				list.add(secretBoard);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 }

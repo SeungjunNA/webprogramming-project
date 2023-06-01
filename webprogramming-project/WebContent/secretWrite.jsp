@@ -20,9 +20,8 @@
 </style>
 </head>
 <body>
-	<h1>글쓰기 페이지</h1>
-	<jsp:include page="menubar.jsp"></jsp:include>
-
+	<jsp:include page="secretMenubar.jsp" />
+	
 	<form action="secretWriteAction.jsp" method="post"
 		style="padding: 10px 300px 0px 300px;">
 		<div class="form-group">

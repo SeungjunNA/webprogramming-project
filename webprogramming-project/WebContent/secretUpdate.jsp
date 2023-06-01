@@ -30,8 +30,7 @@
 		}
 		SecretBoard secretBoard = new SecretBoardDAO().getBoard(boardID);
 	%>
-	<jsp:include page="menubar.jsp"></jsp:include>
-
+	<jsp:include page="secretMenubar.jsp" />
 	<form action="secretUpdateAction.jsp?boardID=<%=boardID%>" method="post"
 		style="padding: 10px 300px 0px 300px;">
 		<div class="form-group">

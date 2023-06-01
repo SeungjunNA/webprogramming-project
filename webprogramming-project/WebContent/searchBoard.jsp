@@ -1,25 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="board.SecretBoardDAO"%>
-<%@ page import="board.SecretBoard"%>
+<%@ page import="board.BoardDAO"%>
+<%@ page import="board.Board"%>
 <%@ page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀게시판</title>
+<title>자유게시판</title>
 <style>
-/* 전체 페이지 스타일 */
-body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 20px;
-	background-color: #f2f2f2;
-}
 /* 메뉴 바 스타일 */
 .menu-bar {
-	margin-bottom: 20px;
+	margin-bottom: 20px; /* menu.jsp와의 간격을 조절 */
 }
 
 /* 글목록 컨테이너 */
@@ -44,8 +38,8 @@ body {
 	font-weight: bold;
 }
 
-/* 글목록 내용 */
-.post-content {
+/* 글목록 번호 */
+.post-id {
 	margin-top: 5px;
 	color: #555555;
 }
@@ -74,7 +68,7 @@ body {
 </style>
 </head>
 <body>
-	<jsp:include page="secretMenubar.jsp" />
+	<jsp:include page="menubar.jsp" />
 
 	<div class="post-list">
 		<%
@@ -88,15 +82,16 @@ body {
 			}
 			if (userID != null) {
 		%>
-		<button class="btn btn-primary" onclick="location.href = 'secretWrite.jsp' "
+		<button class="btn btn-primary" onclick="location.href = 'write.jsp' "
 			style="float: right">글작성</button>
 		<%
 			}
 		%>
 		<div class="post-item">
 			<%
-			SecretBoardDAO secretBoardDAO = new SecretBoardDAO();
-				ArrayList<SecretBoard> list = secretBoardDAO.getList(pageNumber);
+				BoardDAO boardDAO = new BoardDAO();
+				String searchText = request.getParameter("searchText");
+				ArrayList<Board> list = boardDAO.getSearchList(pageNumber, searchText);
 				for (int i = 0; i < list.size(); i++) {
 			%>
 			<div>
@@ -104,8 +99,11 @@ body {
 					<%=list.get(i).getBoardID()%>
 				</div>
 				<div class="post-title"
-					onclick="location.href='secretDetail.jsp?boardID=<%=list.get(i).getBoardID()%>'">
+					onclick="location.href='detail.jsp?boardID=<%=list.get(i).getBoardID()%>'">
 					<%=list.get(i).getBoardTitle()%>
+				</div>
+				<div class="post-author">
+					<%=list.get(i).getUserID()%>
 				</div>
 			</div>
 			<div>
@@ -119,13 +117,13 @@ body {
 		<%
 			if (pageNumber != 1) {
 		%>
-		<a href="secretBoard.jsp?pageNumber=<%=pageNumber - 1%>"
+		<a href="searchBoard.jsp?pageNumber=<%=pageNumber - 1%>"
 			class="btn btn-primary">이전</a>
 		<%
 			}
-			if (list.size()/10 > 0 && list.size()%10 > 0) {
+			if (list.size() / 10 > 0 && list.size() % 10 > 0) {
 		%>
-		<a href="secretBoard.jsp?pageNumber=<%=pageNumber + 1%>"
+		<a href="searchBoard.jsp?pageNumber=<%=pageNumber + 1%>"
 			class="btn btn-primary">다음</a>
 		<%
 			}

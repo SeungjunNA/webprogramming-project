@@ -75,7 +75,6 @@ body {
 </head>
 <body>
 	<jsp:include page="secretMenubar.jsp" />
-
 	<div class="post-list">
 		<%
 			String userID = null;
@@ -88,15 +87,16 @@ body {
 			}
 			if (userID != null) {
 		%>
-		<button class="btn btn-primary" onclick="location.href = 'secretWrite.jsp' "
-			style="float: right">글작성</button>
+		<button class="btn btn-primary"
+			onclick="location.href = 'secretWrite.jsp' " style="float: right">글작성</button>
 		<%
 			}
 		%>
 		<div class="post-item">
 			<%
-			SecretBoardDAO secretBoardDAO = new SecretBoardDAO();
-				ArrayList<SecretBoard> list = secretBoardDAO.getList(pageNumber);
+				SecretBoardDAO secretBoardDAO = new SecretBoardDAO();
+				String searchText = request.getParameter("searchText");
+				ArrayList<SecretBoard> list = secretBoardDAO.getSearchList(pageNumber, searchText);
 				for (int i = 0; i < list.size(); i++) {
 			%>
 			<div>
@@ -123,7 +123,7 @@ body {
 			class="btn btn-primary">이전</a>
 		<%
 			}
-			if (list.size()/10 > 0 && list.size()%10 > 0) {
+			if (list.size() / 10 > 0 && list.size() % 10 > 0) {
 		%>
 		<a href="secretBoard.jsp?pageNumber=<%=pageNumber + 1%>"
 			class="btn btn-primary">다음</a>

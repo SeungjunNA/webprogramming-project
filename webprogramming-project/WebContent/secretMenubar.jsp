@@ -69,7 +69,7 @@ body {
 						%>
 					</ul>
 				</div>
-				<form class="d-flex" method="post" name="search" action="searchBoard.jsp">
+				<form class="d-flex" method="post" name="search" action="secretSearchBoard.jsp">
 					<input class="form-control me-2" type="text" placeholder="Search" name="searchText">
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form>

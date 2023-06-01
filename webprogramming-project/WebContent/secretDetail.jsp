@@ -96,7 +96,7 @@ body {
 </style>
 </head>
 <body>
-	<jsp:include page="menubar.jsp"></jsp:include>
+	<jsp:include page="secretMenubar.jsp" />
 
 	<%
 		String userID = null;
