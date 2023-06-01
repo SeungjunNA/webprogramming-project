@@ -154,11 +154,17 @@ body {
 			</div>
 		</div>
 		<div class="comment-form">
+			<%
+				if(userID != null){
+			%>
 			<form action="commentWriteAction.jsp?boardID=<%=boardID%>" method="post">
 				<textarea name="commentContent" placeholder="댓글을 입력하세요" required></textarea>
 				<br>
 				<button type="submit">댓글 작성</button>
 			</form>
+			<%
+				}
+			%>
 		</div>
 		<a href="javascript:history.back();" class="back-link">뒤로 가기</a>
 	</div>

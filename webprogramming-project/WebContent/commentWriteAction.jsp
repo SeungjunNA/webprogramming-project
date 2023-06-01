@@ -30,7 +30,8 @@
 				script.println("alert('댓글잘석 실패.')");
 				script.println("history.back()");
 				script.println("</script>");
-			} else {
+			}
+			else {
 				PrintWriter script = response.getWriter();
 				response.sendRedirect("detail.jsp?boardID=" + boardID);
 			}
