@@ -123,10 +123,16 @@ body {
 			class="btn btn-primary">이전</a>
 		<%
 			}
-			if (list.size()/10 > 0 && list.size()%10 > 0) {
+			if (list.size() != 0) {
+				if (list.get(0).getBoardID() / 10 > 0 && list.get(0).getBoardID() % 10 > 0) {
 		%>
 		<a href="secretBoard.jsp?pageNumber=<%=pageNumber + 1%>"
 			class="btn btn-primary">다음</a>
+		<%
+			}
+			} else {
+		%>
+		<h3>작성된 글이 없습니다.</h3>
 		<%
 			}
 		%>
