@@ -120,13 +120,13 @@ body {
 		<%
 			if (userID != null && userID.equals(secretBoard.getUserID())) {
 		%>
-		<a href="secretUpdate.jsp?boardID=<%=boardID%>" class="edit-link">수정하기</a>
+		<a href="secretUpdate.jsp?boardID=<%=boardID%>" class="edit-link btn btn-primary">수정하기</a>
 		<a href="secretDeleteAction.jsp?boardID=<%=boardID%>"
-			class="edit-link">삭제하기</a>
+			class="edit-link btn btn-primary">삭제하기</a>
 		<%
 			}
 		%>
-		<h1><%=secretBoard.getBoardTitle() %></h1>
+		<h1><%=secretBoard.getBoardTitle()%></h1>
 		<div class="post-details">
 			<span class="post-date">작성일: <%=secretBoard.getBoardDate()%></span>
 		</div>
@@ -139,22 +139,30 @@ body {
 					for (int i = 0; i < list.size(); i++) {
 				%>
 				<div class="comment-details">
-					<span class="comment-date">작성일 : <%=list.get(i).getCommentDate() %></span>
+					<span class="comment-date">작성일 : <%=list.get(i).getCommentDate()%></span>
 				</div>
-				<div class="comment-content"><%=list.get(i).getCommentContent() %></div>
+				<div class="comment-content"><%=list.get(i).getCommentContent()%></div>
 				<br>
-				<%} %>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<div class="comment-form">
+			<%
+				if (userID != null) {
+			%>
 			<form action="secretCommentWriteAction.jsp?boardID=<%=boardID%>"
 				method="post">
 				<textarea name="commentContent" placeholder="댓글을 입력하세요" required></textarea>
 				<br>
 				<button type="submit">댓글 작성</button>
 			</form>
+			<%
+				}
+			%>
 		</div>
-		<a href="javascript:history.back();" class="back-link">뒤로 가기</a>
+		<a href="javascript:history.back();" class="back-link btn btn-primary">뒤로 가기</a>
 	</div>
 </body>
 </html>

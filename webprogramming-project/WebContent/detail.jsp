@@ -127,8 +127,8 @@ body {
 		<%
 			if (userID != null && userID.equals(board.getUserID())) {
 		%>
-		<a href="update.jsp?boardID=<%=boardID%>" class="edit-link">수정하기</a> <a
-			href="deleteAction.jsp?boardID=<%=boardID%>" class="edit-link">삭제하기</a>
+		<a href="update.jsp?boardID=<%=boardID%>" class="edit-link btn btn-primary">수정하기</a> <a
+			href="deleteAction.jsp?boardID=<%=boardID%>" class="edit-link btn btn-primary">삭제하기</a>
 		<%
 			}
 		%>
@@ -166,7 +166,7 @@ body {
 				}
 			%>
 		</div>
-		<a href="javascript:history.back();" class="back-link">뒤로 가기</a>
+		<a href="javascript:history.back();" class="back-link btn btn-primary">뒤로 가기</a>
 	</div>
 </body>
 </html>
