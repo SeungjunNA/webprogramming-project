@@ -19,7 +19,6 @@
 			boardID = Integer.parseInt(request.getParameter("boardID"));
 		}
 		Board board = new BoardDAO().getBoard(boardID);
-		String userID = (String) session.getAttribute("userID");
 		if (request.getParameter("boardTitle") == null || request.getParameter("boardTitle").equals("")) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");

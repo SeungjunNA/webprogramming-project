@@ -1,3 +1,4 @@
+
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -112,24 +113,28 @@
 				<%
 					BoardDAO boardDAO = new BoardDAO();
 					ArrayList<Board> list1 = boardDAO.getList(1);
-					int size1 = list1.size()<8 ? list1.size() : 8; 
-					for(int i=0;i<size1;i++){
+					int size1 = list1.size() < 8 ? list1.size() : 8;
+					for (int i = 0; i < size1; i++) {
 				%>
-				<a href="detail.jsp?boardID=<%=list1.get(i).getBoardID()%>"><%=list1.get(i).getBoardTitle() %></a><br>
-				<%}%>
+				<a href="detail.jsp?boardID=<%=list1.get(i).getBoardID()%>"><%=list1.get(i).getBoardTitle()%></a><br>
+				<%
+					}
+				%>
 			</div>
 
 			<%-- 박스 2 --%>
 			<div class="box">
 				<h2 class="post-title">글목록 제목 2</h2>
 				<%
-					SecretBoardDAO secretBoardDAO= new SecretBoardDAO();
+					SecretBoardDAO secretBoardDAO = new SecretBoardDAO();
 					ArrayList<SecretBoard> list2 = secretBoardDAO.getList(1);
-					int size2 = list2.size()<8 ? list2.size() : 8;
-					for(int i =0;i<size2;i++){
+					int size2 = list2.size() < 8 ? list2.size() : 8;
+					for (int i = 0; i < size2; i++) {
 				%>
-				<a href="secretDetail.jsp?boardID=<%=list2.get(i).getBoardID()%>"><%=list2.get(i).getBoardTitle() %></a><br>
-				<%} %>
+				<a href="secretDetail.jsp?boardID=<%=list2.get(i).getBoardID()%>"><%=list2.get(i).getBoardTitle()%></a><br>
+				<%
+					}
+				%>
 			</div>
 		</div>
 	</div>

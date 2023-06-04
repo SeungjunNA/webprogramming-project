@@ -1,8 +1,8 @@
-<%@page import="javax.swing.text.AbstractDocument.Content"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="comment.CommentDAO"%>
 <%@ page import="java.io.PrintWriter"%>
+<%	request.setCharacterEncoding("UTF-8");%>
 <jsp:useBean id="comment" class="comment.Comment" scope="page" />
 <jsp:setProperty name="comment" property="commentContent" />
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
 		} else {
 			CommentDAO commentDAO = new CommentDAO();
 			int boardID = Integer.parseInt(request.getParameter("boardID"));
-			int result = commentDAO.commentWrite(userID, comment.getCommentContent(), boardID);
+			int result = commentDAO.commentWrite(userID, (String)comment.getCommentContent(), boardID);
 			if (result == -1) {
 				PrintWriter script = response.getWriter();
 				script.println("<script>");

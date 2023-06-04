@@ -82,4 +82,19 @@ public class UserDAO {
 		}
 		return null;
 	}
+	
+	public int update(String userID, String userPassword, String userEmail, String userNickname) {
+		String SQL = "UPDATE USER SET userPassword = ?, userEmail = ?, userNickname = ? WHERE userID = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userPassword);
+			pstmt.setString(2, userEmail);
+			pstmt.setString(3, userNickname);
+			pstmt.setString(4, userID);
+			return pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }
