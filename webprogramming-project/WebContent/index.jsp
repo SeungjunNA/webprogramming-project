@@ -23,13 +23,14 @@
 }
 /* 회원정보칸 스타일 */
 .member-info {
-	flex-basis: 25%;
+	flex-basis: 20%;
 	background-color: #ffffff;
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	padding: 20px;
+	padding: 50px 50px;
 	margin-right: 20px;
-	margin-top: 150px;
+	margin-top: 250px;
+	margin-bottom: 150px;
 }
 
 /* 박스 컨테이너 스타일 */
@@ -47,14 +48,22 @@
 	border-radius: 5px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	padding: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 1px;
+	height: 600px;
 }
-
+.box a {
+	color: black;
+	text-decoration: none;
+}
+.box hr{
+	border-width: 3px;
+}
 /* 글목록 제목 스타일 */
 .post-title {
-	font-size: 18px;
+	font-size: 28px;
 	font-weight: bold;
 	margin-bottom: 10px;
+	padding: 0px 210px;
 }
 </style>
 </head>
@@ -84,7 +93,7 @@
 			if (userID == null) {
 		%>
 		<div class="member-info">
-			<h2>로그인을 해주세요</h2>
+			<h3>로그인을 해주세요</h3>
 		</div>
 		<%
 			} else {
@@ -109,14 +118,14 @@
 		<div class="box-container">
 			<%-- 박스 1 --%>
 			<div class="box">
-				<h2 class="post-title">글목록 제목 1</h2>
+				<h1 class="post-title">자유게시판</h1>
 				<%
 					BoardDAO boardDAO = new BoardDAO();
 					ArrayList<Board> list1 = boardDAO.getList(1);
 					int size1 = list1.size() < 8 ? list1.size() : 8;
 					for (int i = 0; i < size1; i++) {
 				%>
-				<a href="detail.jsp?boardID=<%=list1.get(i).getBoardID()%>"><%=list1.get(i).getBoardTitle()%></a><br>
+				<a href="detail.jsp?boardID=<%=list1.get(i).getBoardID()%>"><h2 style="color: black; text-decoration: none;"><%=list1.get(i).getBoardTitle()%></h2></a><hr>
 				<%
 					}
 				%>
@@ -124,14 +133,14 @@
 
 			<%-- 박스 2 --%>
 			<div class="box">
-				<h2 class="post-title">글목록 제목 2</h2>
+				<h1 class="post-title">비밀게시판</h1>
 				<%
 					SecretBoardDAO secretBoardDAO = new SecretBoardDAO();
 					ArrayList<SecretBoard> list2 = secretBoardDAO.getList(1);
 					int size2 = list2.size() < 8 ? list2.size() : 8;
 					for (int i = 0; i < size2; i++) {
 				%>
-				<a href="secretDetail.jsp?boardID=<%=list2.get(i).getBoardID()%>"><%=list2.get(i).getBoardTitle()%></a><br>
+				<a href="secretDetail.jsp?boardID=<%=list2.get(i).getBoardID()%>"><h2><%=list2.get(i).getBoardTitle()%></h2></a><hr>
 				<%
 					}
 				%>

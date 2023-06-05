@@ -162,7 +162,7 @@ body {
 				}
 			%>
 		</div>
-		<a href="javascript:history.back();" class="back-link btn btn-primary">뒤로 가기</a>
+		<a href="secretBoard.jsp" class="back-link btn btn-primary">뒤로 가기</a>
 	</div>
 </body>
 </html>

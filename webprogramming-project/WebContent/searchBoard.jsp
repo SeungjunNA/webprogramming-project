@@ -4,7 +4,9 @@
 <%@ page import="board.BoardDAO"%>
 <%@ page import="board.Board"%>
 <%@ page import="java.util.ArrayList"%>
-
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
