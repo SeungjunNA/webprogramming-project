@@ -154,7 +154,6 @@ public class SecretBoardDAO {
 	public ArrayList<SecretBoard> getSearchList(int pageNumber, String searchText){
 		ArrayList<SecretBoard> list = new ArrayList<SecretBoard>();
 		String SQL = "SELECT * FROM SECRETBOARD WHERE boardID < ? AND boardTitle LIKE '%"+searchText+"%' ORDER BY boardID DESC LIMIT 10";
-		System.out.println(getNext() - (pageNumber - 1) * 10 + " ,,  "+ searchText);
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);

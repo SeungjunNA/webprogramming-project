@@ -3,6 +3,8 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="board.BoardDAO"%>
 <%@ page import="board.Board"%>
+<%@ page import="user.UserDAO"%>
+<%@ page import="user.User"%>
 <%@ page import="java.util.ArrayList"%>
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -30,7 +32,6 @@
 
 /* 글목록 항목 스타일 */
 .post-item {
-	border-bottom: 1px solid #e5e5e5;
 	padding: 10px 0;
 }
 
@@ -38,12 +39,6 @@
 .post-title {
 	font-size: 18px;
 	font-weight: bold;
-}
-
-/* 글목록 번호 */
-.post-id {
-	margin-top: 5px;
-	color: #555555;
 }
 
 /* 글목록 날짜 */
@@ -82,6 +77,7 @@
 			if (request.getParameter("pageNumber") != null) {
 				pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 			}
+			String searchText = request.getParameter("searchText");
 			if (userID != null) {
 		%>
 		<button class="btn btn-primary" onclick="location.href = 'write.jsp' "
@@ -90,22 +86,24 @@
 			}
 		%>
 		<div class="post-item">
+			<h3>
+				"<%=searchText%>" 검색 결과
+			</h3>
 			<%
+				UserDAO userDAO = new UserDAO();
 				BoardDAO boardDAO = new BoardDAO();
-				String searchText = request.getParameter("searchText");
 				ArrayList<Board> list = boardDAO.getSearchList(pageNumber, searchText);
 				for (int i = 0; i < list.size(); i++) {
+					User user = userDAO.getUser(list.get(i).getUserID());
 			%>
+			<hr>
 			<div>
-				<div class="post-id">
-					<%=list.get(i).getBoardID()%>
-				</div>
-				<div class="post-title"
-					onclick="location.href='detail.jsp?boardID=<%=list.get(i).getBoardID()%>'">
-					<%=list.get(i).getBoardTitle()%>
-				</div>
+				<a class="post-title"
+					href="detail.jsp?boardID=<%=list.get(i).getBoardID()%>"
+					style="color: black; text-decoration: none;"> <%=list.get(i).getBoardTitle()%>
+				</a>
 				<div class="post-author">
-					<%=list.get(i).getUserID()%>
+					<%=user.getUserNickname()%>
 				</div>
 			</div>
 			<div>
@@ -114,7 +112,7 @@
 			<%
 				}
 			%>
-
+			<hr>
 		</div>
 		<%
 			if (pageNumber != 1) {
@@ -132,7 +130,7 @@
 			}
 			} else {
 		%>
-		<h3>작성된 글이 없습니다.</h3>
+		<h3>찾으시는 제목의 글이 없습니다.</h3>
 		<%
 			}
 		%>

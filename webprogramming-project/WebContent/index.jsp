@@ -1,4 +1,3 @@
-
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -13,7 +12,7 @@
 <%@ page import="board.SecretBoard"%>
 <%@ page import="java.util.ArrayList"%>
 <!doctype html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <title>심희스토리</title>
@@ -49,7 +48,7 @@
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 	padding: 20px;
 	margin-bottom: 1px;
-	height: 600px;
+	height: 650px;
 }
 .box a {
 	color: black;

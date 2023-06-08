@@ -3,6 +3,8 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="board.Board"%>
 <%@ page import="board.BoardDAO"%>
+<%@ page import="user.UserDAO"%>
+<%@ page import="user.User"%>
 <%@ page import="comment.Comment"%>
 <%@ page import="comment.CommentDAO"%>
 <%@ page import="java.util.ArrayList"%>
@@ -105,7 +107,7 @@ body {
 </head>
 <body>
 	<jsp:include page="menubar.jsp"></jsp:include>
-	<%
+	<%	
 		String userID = null;
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
@@ -122,6 +124,8 @@ body {
 			script.println("</script>");
 		}
 		Board board = new BoardDAO().getBoard(boardID);
+		UserDAO userDAO = new UserDAO();
+		User user = userDAO.getUser(board.getUserID());
 	%>
 	<div class="container">
 		<%
@@ -135,7 +139,7 @@ body {
 		<h1><%=board.getBoardTitle()%></h1>
 		<div class="post-details">
 			<span class="post-date">작성일 : <%=board.getBoardDate()%></span> <br>
-			<span class="post-author">작성자 : <%=board.getUserID()%></span>
+			<span class="post-author">작성자 : <%=user.getUserNickname()%></span>
 		</div>
 		<div class="post-content"><%=board.getBoardContent()%></div>
 		<div class="comment-section">
@@ -144,10 +148,11 @@ body {
 					CommentDAO commentDAO = new CommentDAO();
 					ArrayList<Comment> list = commentDAO.getList(boardID);
 					for (int i = 0; i < list.size(); i++) {
+						user = userDAO.getUser(list.get(i).getUserID());
 				%>
 				<div class="comment-details">
 					<span class="comment-date">작성일 : <%=list.get(i).getCommentDate() %></span>
-					<span class="comment-author">작성자 : <%=list.get(i).getUserID() %></span>
+					<span class="comment-author">작성자 : <%=user.getUserNickname()%></span>
 				</div>
 				<div class="comment-content"><%=list.get(i).getCommentContent() %></div>
 				<%} %>

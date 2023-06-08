@@ -34,7 +34,6 @@ body {
 
 /* 글목록 항목 스타일 */
 .post-item {
-	border-bottom: 1px solid #e5e5e5;
 	padding: 10px 0;
 }
 
@@ -52,11 +51,6 @@ body {
 
 /* 글목록 날짜 */
 .post-date {
-	font-size: 12px;
-	color: #999999;
-}
-/* 글작성자 */
-.post-author {
 	font-size: 12px;
 	color: #999999;
 }
@@ -88,25 +82,22 @@ body {
 			}
 			if (userID != null) {
 		%>
-		<button class="btn btn-primary" onclick="location.href = 'secretWrite.jsp' "
-			style="float: right">글작성</button>
+		<button class="btn btn-primary"
+			onclick="location.href = 'secretWrite.jsp' " style="float: right">글작성</button>
 		<%
 			}
 		%>
 		<div class="post-item">
 			<%
-			SecretBoardDAO secretBoardDAO = new SecretBoardDAO();
+				SecretBoardDAO secretBoardDAO = new SecretBoardDAO();
 				ArrayList<SecretBoard> list = secretBoardDAO.getList(pageNumber);
 				for (int i = 0; i < list.size(); i++) {
 			%>
-			<div>
-				<div class="post-id">
-					<%=list.get(i).getBoardID()%>
-				</div>
-				<div class="post-title"
-					onclick="location.href='secretDetail.jsp?boardID=<%=list.get(i).getBoardID()%>'">
-					<%=list.get(i).getBoardTitle()%>
-				</div>
+			<hr><div>
+				<a class="post-title"
+					href="secretDetail.jsp?boardID=<%=list.get(i).getBoardID()%>"
+					style="color: black; text-decoration: none;"> <%=list.get(i).getBoardTitle()%>
+				</a>
 			</div>
 			<div>
 				<div class="post-date"><%=list.get(i).getBoardDate()%></div>
@@ -114,7 +105,7 @@ body {
 			<%
 				}
 			%>
-
+		<hr>
 		</div>
 		<%
 			if (pageNumber != 1) {

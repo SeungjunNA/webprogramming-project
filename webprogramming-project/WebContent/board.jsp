@@ -3,6 +3,8 @@
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="board.BoardDAO"%>
 <%@ page import="board.Board"%>
+<%@ page import="user.UserDAO"%>
+<%@ page import="user.User"%>
 <%@ page import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
@@ -28,7 +30,6 @@
 
 /* 글목록 항목 스타일 */
 .post-item {
-	border-bottom: 1px solid #e5e5e5;
 	padding: 10px 0;
 }
 
@@ -36,12 +37,6 @@
 .post-title {
 	font-size: 18px;
 	font-weight: bold;
-}
-
-/* 글목록 번호 */
-.post-id {
-	margin-top: 5px;
-	color: #555555;
 }
 
 /* 글목록 날짜 */
@@ -89,20 +84,19 @@
 		%>
 		<div class="post-item">
 			<%
+				UserDAO userDAO = new UserDAO();
 				BoardDAO boardDAO = new BoardDAO();
 				ArrayList<Board> list = boardDAO.getList(pageNumber);
 				for (int i = 0; i < list.size(); i++) {
+					User user = userDAO.getUser(list.get(i).getUserID());
 			%>
-			<div>
-				<div class="post-id">
-					<%=list.get(i).getBoardID()%>
-				</div>
-				<div class="post-title"
-					onclick="location.href='detail.jsp?boardID=<%=list.get(i).getBoardID()%>'">
+			<hr><div>
+				<a class="post-title" 
+					href="detail.jsp?boardID=<%=list.get(i).getBoardID()%>" style="color:black; text-decoration:none;">
 					<%=list.get(i).getBoardTitle()%>
-				</div>
+				</a>
 				<div class="post-author">
-					<%=list.get(i).getUserID()%>
+					<%=user.getUserNickname()%>
 				</div>
 			</div>
 			<div>
@@ -111,7 +105,7 @@
 			<%
 				}
 			%>
-
+		<hr>
 		</div>
 		<%
 			if (pageNumber != 1) {

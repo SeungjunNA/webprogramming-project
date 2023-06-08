@@ -20,7 +20,6 @@
 </style>
 </head>
 <body>
-	<h1>글쓰기 페이지</h1>
 	<jsp:include page="menubar.jsp"></jsp:include>
 
 	<form action="writeAction.jsp" method="post"

@@ -53,12 +53,12 @@ form input {
 		<form action="updateMemberAction.jsp" method="POST">
 			<h2>회원 정보 수정</h2>
 			<label for="name">이름:</label> 
-			<input type="text" name="userName" value="<%=userName%>"><br> 
+			<input type="text" name="userName" value="<%=userName%>" disabled><br> 
 			<label for="email">이메일:</label> <input type="email" name="userEmail" value="<%=userEmail%>"><br>
-			<label for="id">아이디:</label> <input type="text" name="userID" value="<%=userID%>"><br> 
+			<label for="id">아이디:</label> <input type="text" name="userID" value="<%=userID%>" disabled><br> 
 			<label for="password">비밀번호:</label> <input type="password" name="userPassword" value="<%=userPassword%>"><br>
 			<label for="nickname">닉네임:</label> <input type="text" name="userNickname" value="<%=userNickname%>"><br> 
-			<label for="gender">성별:</label> <input type="text" name="userGender" value="<%=userGender%>"><br> 
+			<label for="gender">성별:</label> <input type="text" name="userGender" value="<%=userGender%>" disabled><br> 
 			<input class="btn btn-primary" type="submit" value="수정">
 		</form>
 	</div>

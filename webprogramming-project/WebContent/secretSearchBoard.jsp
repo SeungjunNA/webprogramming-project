@@ -37,7 +37,6 @@ body {
 
 /* 글목록 항목 스타일 */
 .post-item {
-	border-bottom: 1px solid #e5e5e5;
 	padding: 10px 0;
 }
 
@@ -55,11 +54,6 @@ body {
 
 /* 글목록 날짜 */
 .post-date {
-	font-size: 12px;
-	color: #999999;
-}
-/* 글작성자 */
-.post-author {
 	font-size: 12px;
 	color: #999999;
 }
@@ -84,6 +78,7 @@ body {
 			if (session.getAttribute("userID") != null) {
 				userID = (String) session.getAttribute("userID");
 			}
+			String searchText = request.getParameter("searchText");
 			int pageNumber = 1;
 			if (request.getParameter("pageNumber") != null) {
 				pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
@@ -96,20 +91,18 @@ body {
 			}
 		%>
 		<div class="post-item">
+			<h3>"<%=searchText%>" 검색 결과</h3>
 			<%
 				SecretBoardDAO secretBoardDAO = new SecretBoardDAO();
-				String searchText = request.getParameter("searchText");
 				ArrayList<SecretBoard> list = secretBoardDAO.getSearchList(pageNumber, searchText);
 				for (int i = 0; i < list.size(); i++) {
 			%>
+			<hr>
 			<div>
-				<div class="post-id">
-					<%=list.get(i).getBoardID()%>
-				</div>
-				<div class="post-title"
-					onclick="location.href='secretDetail.jsp?boardID=<%=list.get(i).getBoardID()%>'">
-					<%=list.get(i).getBoardTitle()%>
-				</div>
+				<a class="post-title"
+					href="secretDetail.jsp?boardID=<%=list.get(i).getBoardID()%>"
+					style="color: black; text-decoration: none;"> <%=list.get(i).getBoardTitle()%>
+				</a>
 			</div>
 			<div>
 				<div class="post-date"><%=list.get(i).getBoardDate()%></div>
@@ -117,7 +110,7 @@ body {
 			<%
 				}
 			%>
-
+			<hr>
 		</div>
 		<%
 			if (pageNumber != 1) {
@@ -135,7 +128,7 @@ body {
 			}
 			} else {
 		%>
-		<h3>작성된 글이 없습니다.</h3>
+		<h3>찾으시는 제목의 글이 없습니다.</h3>
 		<%
 			}
 		%>
