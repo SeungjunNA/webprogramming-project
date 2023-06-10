@@ -5,8 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import board.Board;
-
 public class UserDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;

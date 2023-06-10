@@ -90,10 +90,11 @@
 				for (int i = 0; i < list.size(); i++) {
 					User user = userDAO.getUser(list.get(i).getUserID());
 			%>
-			<hr><div>
-				<a class="post-title" 
-					href="detail.jsp?boardID=<%=list.get(i).getBoardID()%>" style="color:black; text-decoration:none;">
-					<%=list.get(i).getBoardTitle()%>
+			<hr>
+			<div>
+				<a class="post-title"
+					href="detail.jsp?boardID=<%=list.get(i).getBoardID()%>"
+					style="color: black; text-decoration: none;"> <%=list.get(i).getBoardTitle()%>
 				</a>
 				<div class="post-author">
 					<%=user.getUserNickname()%>
@@ -105,7 +106,7 @@
 			<%
 				}
 			%>
-		<hr>
+			<hr>
 		</div>
 		<%
 			if (pageNumber != 1) {

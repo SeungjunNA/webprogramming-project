@@ -6,8 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import board.Board;
-
 public class CommentDAO {
 	private Connection conn;
 	private ResultSet rs;
